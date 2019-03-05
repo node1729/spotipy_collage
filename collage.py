@@ -2,15 +2,24 @@ from PIL import Image, ImageDraw
 import json
 import os
 
+
+
+infile = open("settings.json")
+settings_dict = json.load(infile)
+
+CANVAS_WIDTH = settings_dict["CANVAS_WIDTH"]
+CANVAS_HEIGHT = settings_dict["CANVAS_HEIGHT"]
+COLLAGE_WIDTH = settings_dict["COLLAGE_WIDTH"]
+COLLAGE_HEIGHT = settings_dict["COLLAGE_HEIGHT"]
+
+os.chdir("./photos/")
+
 img_sample = input("input base size image: ")
 img_in = Image.open(img_sample)
 
-img_out = Image.new("RGB", (img_in.size[0]*6, img_in.size[1]*3))
+img_out = Image.new("RGB", (img_in.size[0]*CANVAS_WIDTH, img_in.size[1]*CANVAS_HEIGHT))
 
 test_dir = os.listdir()
-
-dict_file = open("images.json")
-img_dict = json.load(dict_file)
 
 new_dir = []
 for item in test_dir:
@@ -28,18 +37,16 @@ while x < 10:
 
 x = 0
 z = 1
-while x < 3:
+while x < COLLAGE_HEIGHT:
     y = 0
-    while y < 3:
+    while y < COLLAGE_WIDTH:
         collage_part = Image.open(str(z) + ".jfif")
         img_out.paste(collage_part, ((y)*img_in.size[0], (x)*img_in.size[1]))
         collage_part.close()
         y += 1
-        z = (z + 1) % 5
-	if z == 0:
-	    z += 1
+        z += 1
     x += 1
 
-
+os.chdir("../")
 img_out.save("collage.png")
 
