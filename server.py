@@ -2,9 +2,11 @@ from bottle import route, run, request
 import spotipy
 from spotipy import oauth2
 
+
+
 PORT_NUMBER = 8081
-SPOTIPY_CLIENT_ID = "6aebf38043e34e7d861e580209008d54"
-SPOTIPY_CLIENT_SECRET = "169075c04dc446ceb5740fb97729b729"
+SPOTIPY_CLIENT_ID = ""
+SPOTIPY_CLIENT_SECRET = ""
 SPOTIPY_REDIRECT_URI = "http://localhost:8081"
 SCOPE = "user-library-read"
 CACHE = ".spotipyoauthcache"
