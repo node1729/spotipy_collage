@@ -1,12 +1,14 @@
 from bottle import route, run, request
 import spotipy
 from spotipy import oauth2
+import json
 
-
+infile = open("properties.json")
+settings_dict = json.load(infile)
 
 PORT_NUMBER = 8081
-SPOTIPY_CLIENT_ID = ""
-SPOTIPY_CLIENT_SECRET = ""
+SPOTIPY_CLIENT_ID = settings_dict["CLIENT_ID"]
+SPOTIPY_CLIENT_SECRET = settings_dict["CLIENT_SECRET"]
 SPOTIPY_REDIRECT_URI = "http://localhost:8081"
 SCOPE = "user-library-read"
 CACHE = ".spotipyoauthcache"
