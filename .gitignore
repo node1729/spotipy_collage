@@ -1,0 +1,6 @@
+*.png
+*.jfif
+.spotifyouathcache
+*.json
+__pychache__/
+
