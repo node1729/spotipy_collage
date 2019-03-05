@@ -14,6 +14,8 @@ infile = open(".spotipyoauthcache")
 in_dict = json.load(infile)
 bearer_token = in_dict["access_token"]
 
+os.chdir("./photos/")
+
 def spotifyAPIReq(URL):
     http = urllib3.PoolManager(
             cert_reqs="CERT_REQUIRED",
@@ -34,7 +36,7 @@ def spot_album_save(album_id, outname=None):
     json.dump(album_dict, outfile, indent=4) 
     
     # set this variable to 0 for max size image (640x640), 1 is for 300x300, and 2 is for 64x64
-    size = 0
+    size = 2
     
     img = album_dict["images"][size]["url"]
     artist = album_dict["artists"][0]["name"]
@@ -42,10 +44,10 @@ def spot_album_save(album_id, outname=None):
     # if outname supplied, set that as the filename, useful for loops
     if not outname:
         urllib.request.urlretrieve(img, artist + " - " + album_title + ".jfif")
-        print("Saved as \"" + artist + " - " + album_title + ".jfif\"")
+        print("Saved under \"photos/" + artist + " - " + album_title + ".jfif\"")
     else:
         urllib.request.urlretrieve(img, outname + ".jfif")
-        print("Saved as \"" + outname + ".jfif\"")
+        print("Saved under \"photos/" + outname + ".jfif\"")
       
 # get album from track
 def spot_track_to_album(track_id):
@@ -81,7 +83,7 @@ if len(sys.argv) == 2:
     elif "/playlist/" in sys.argv[1]:
         print("Dumping playlist json")
         tracks_from_playlist(sys.argv[1][sys.argv[1].index("/playlist/") + 10:sys.argv[1].index("/playlist/") + 10 + ID_LEN])
-    elif "spotify:playlist:" in sys.argv[1]:
+    elif ":playlist:" in sys.argv[1]:
         print("Getting tracks from playlist")
-
+        tracks_from_playlist(sys.argv[1][-ID_LEN:])
 
