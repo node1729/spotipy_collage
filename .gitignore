@@ -2,5 +2,6 @@
 *.jfif
 .spotifyouathcache
 *.json
+!settings.json
 __pychache__/
 
