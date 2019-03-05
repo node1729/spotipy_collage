@@ -3,6 +3,8 @@ import spotipy
 from spotipy import oauth2
 import json
 
+
+# Change this to settings.json for personal use, or create properties.json
 infile = open("properties.json")
 settings_dict = json.load(infile)
 
