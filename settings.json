@@ -1,8 +1,9 @@
 {
     "CLIENT_ID": "",
     "CLIENT_SECRET": "",
-    "COLLAGE_WIDTH": 10,
-    "COLLAGE_HEIGHT": 10,
-    "CANVAS_WIDTH": 10,
-    "CANVAS_HEIGHT": 10
+    "COLLAGE_WIDTH": 5,
+    "COLLAGE_HEIGHT": 5,
+    "CANVAS_WIDTH": 5,
+    "CANVAS_HEIGHT": 5,
+    "LAST_FM_API_KEY": ""
 }
